@@ -16,15 +16,10 @@ public class CuentaAhorro extends Cuenta {
     public static int countNumInteres = 0;
     private String TipoCuenta = "Ahorro";
     
-    public CuentaAhorro(int NumeroCuenta, int CodigoBanco, int CodigoSucursal) {
-        super(NumeroCuenta, CodigoBanco, CodigoSucursal);
+    public CuentaAhorro(int NumeroCuenta) {
+        super(NumeroCuenta);
         Interes = new double[maxNumInteres];
         NombreInteres = new String[maxNumInteres];
-    }
-    
-    @Override
-    public String getTipoCuenta(){
-        return TipoCuenta;
     }
     
     public void addInteres(String NombreInteres, double Interes)
@@ -48,12 +43,6 @@ public class CuentaAhorro extends Cuenta {
             }
         }
         return 0;
-    }
-    
-    public void PutSaldoInteres(String NombreInteres)
-    {
-        double interesResultSearch = SearchInteres(NombreInteres);
-        this.Saldo = Saldo - (Saldo * interesResultSearch);
     }
     
 }

@@ -14,13 +14,8 @@ public class CuentaCorriente extends Cuenta{
     private double SobregiroTotal;
     private String TipoCuenta = "Corriente";
 
-    public CuentaCorriente(int NumeroCuenta, int CodigoBanco, int CodigoSucursal) {
-        super(NumeroCuenta, CodigoBanco, CodigoSucursal);
-    }
-        
-    @Override
-    public String getTipoCuenta(){
-        return TipoCuenta;
+    public CuentaCorriente(int NumeroCuenta) {
+        super(NumeroCuenta);
     }
 
     public double getSobregiro(){
@@ -45,12 +40,12 @@ public class CuentaCorriente extends Cuenta{
      * @param Retiro
      */
     @Override
-    public void RetirarSaldo(double Retiro){
-        if(this.Saldo == 0){
+    public void retirar(double Retiro){
+        if(this.getBalance() == 0){
             RetirarSaldoSobregiro(Retiro);
         }
         else
-            super.RetirarSaldo(Retiro); 
+            super.retirar(Retiro); 
     }
     
     public void RetirarSaldoSobregiro(double RetiroSobregiro){

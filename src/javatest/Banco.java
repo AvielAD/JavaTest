@@ -25,9 +25,9 @@ public class Banco {
         this.cuentasCorriente = new CuentaCorriente[this.maxCuentasCorriente];
     }
     
-    public void crearCuentaAhorro(int NumCuenta, int CodigoBanco, int CodigoSucursal){
+    public void crearCuentaAhorro(int NumCuenta){
         if (this.countNumCuentaAhorro < maxCuentasAhorro) {
-             cuentasAhorro[countNumCuentaAhorro] = new CuentaAhorro(NumCuenta,CodigoBanco,CodigoSucursal);
+             cuentasAhorro[countNumCuentaAhorro] = new CuentaAhorro(NumCuenta);
              this.countNumCuentaAhorro ++;
         }
         //ELSE
@@ -36,9 +36,9 @@ public class Banco {
         return this.cuentasAhorro;
     }
     
-    public void crearCuentaCorriente(int NumCuenta, int CodigoBanco, int CodigoSucursal){
+    public void crearCuentaCorriente(int NumCuenta){
         if (this.countNumCuentaCorriente < maxCuentasCorriente) {
-             cuentasCorriente[countNumCuentaCorriente] = new CuentaCorriente(NumCuenta,CodigoBanco,CodigoSucursal);
+             cuentasCorriente[countNumCuentaCorriente] = new CuentaCorriente(NumCuenta);
              this.countNumCuentaCorriente ++;
         }
         //ElSE
@@ -52,13 +52,13 @@ public class Banco {
     public void DepositarCuenta(int NumCuenta, double SaldoDeposito){
 
         Cuenta CuentaDeposito = SearchCuenta(NumCuenta);
-        CuentaDeposito.DepositarSaldo(SaldoDeposito);
+        CuentaDeposito.depositar(SaldoDeposito);
         
     }
     
     public void RetirarCuenta(int NumCuenta, double SaldoRetirar){
         Cuenta CuentaRetiro = SearchCuenta(NumCuenta);
-        CuentaRetiro.RetirarSaldo(SaldoRetirar); 
+        CuentaRetiro.retirar(SaldoRetirar); 
         
     }
     
@@ -79,7 +79,7 @@ public class Banco {
     public CuentaAhorro SearchCuentaAhorro(int NumCuenta){
         for (int i = 0; i < this.maxCuentasAhorro; i++) {
             if(this.cuentasAhorro[i] != null)
-                if (this.cuentasAhorro[i].getNumeroCuenta() == NumCuenta) {
+                if (this.cuentasAhorro[i].getNoCuenta() == NumCuenta) {
                     return this.cuentasAhorro[i];
                 }
         }
@@ -89,7 +89,7 @@ public class Banco {
     public CuentaCorriente SearchCuentaCorriente(int NumCuenta){
         for (int i = 0; i < this.maxCuentasCorriente; i++) {
             if(this.cuentasCorriente[i] != null && 
-                    this.cuentasCorriente[i].getNumeroCuenta() == NumCuenta)
+                    this.cuentasCorriente[i].getNoCuenta() == NumCuenta)
             {
                 return this.cuentasCorriente[i];
             }
@@ -115,7 +115,7 @@ public class Banco {
     }
     
     public boolean isEmptySaldo(Cuenta DropCuenta){
-        if(DropCuenta.getSaldo() == 0)
+        if(DropCuenta.getBalance() == 0)
             return true;
         return false;
     }

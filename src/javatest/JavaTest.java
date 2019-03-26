@@ -58,7 +58,7 @@ public class JavaTest {
                 System.out.print("Ingresar Codigo de Sucursal: ");
                 NumSucursal = Integer.parseInt(br.readLine());
                 
-                Bancomer.crearCuentaAhorro(NumCuenta, NumCodigBanco, NumSucursal); 
+                Bancomer.crearCuentaAhorro(NumCuenta); 
                 break;
             case 2:
                 System.out.print("Ingresar Numero de Cuenta: ");
@@ -70,7 +70,7 @@ public class JavaTest {
                 System.out.print("Ingresar Codigo de Sucursal: ");
                 NumSucursal = Integer.parseInt(br.readLine());
                 
-                Bancomer.crearCuentaCorriente(NumCuenta, NumCodigBanco, NumSucursal); 
+                Bancomer.crearCuentaCorriente(NumCuenta); 
                 
                 break;
             case 3:
@@ -103,10 +103,10 @@ public class JavaTest {
 
                 for (int i = 0; i < 5; i++) {
                         if (aux[i]!= null) {
-                            System.out.println("Cuenta: "+aux[i].getNumeroCuenta()+" Saldo: "+aux[i].getSaldo()+" Tipo de Cuenta: "+aux[i].getTipoCuenta());
+                            System.out.println("Cuenta: "+aux[i].getNoCuenta()+" Saldo: "+aux[i].getBalance());
                         }
                         if (aux2[i]!= null) {
-                            System.out.println("Cuenta: "+aux2[i].getNumeroCuenta()+" Saldo: "+aux2[i].getSaldo()+" Tipo de Cuenta: "+aux2[i].getTipoCuenta());
+                            System.out.println("Cuenta: "+aux2[i].getNoCuenta()+" Saldo: "+aux2[i].getBalance());
                         }
                         
                     }
