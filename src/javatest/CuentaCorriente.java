@@ -1,61 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package javatest;
 
-/**
- *
- * @author VSOne
- */
+
 public class CuentaCorriente extends Cuenta{
-    private double Sobregiro;
-    private double SobregiroTotal;
-    private String TipoCuenta = "Corriente";
+    private double Sobregiro=1000;
+    private boolean SobregiroTrue;
+    
 
-    public CuentaCorriente(int NumeroCuenta, int CodigoBanco, int CodigoSucursal) {
-        super(NumeroCuenta, CodigoBanco, CodigoSucursal);
-    }
+    public CuentaCorriente(int NumeroCuenta) {
         
-    @Override
-    public String getTipoCuenta(){
-        return TipoCuenta;
-    }
-
-    public double getSobregiro(){
-       return Sobregiro;
-    }
-    public void setSobregiro(int Sobregiro){
-        this.Sobregiro = Sobregiro;
-    }
-    public double getSobregiroTotal(){
-        return this.SobregiroTotal;
+        super(NumeroCuenta);
+        
     }
     
-    public boolean isSobregiro(){
-        if (this.SobregiroTotal-this.Sobregiro != 0) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     *
-     * @param Retiro
-     */
-    @Override
-    public void RetirarSaldo(double Retiro){
-        if(this.Saldo == 0){
-            RetirarSaldoSobregiro(Retiro);
+    public void isSobregiro(){
+        if (Sobregiro== 0) {
+            SobregiroTrue=true;
         }
         else
-            super.RetirarSaldo(Retiro); 
+        SobregiroTrue=false;
     }
     
-    public void RetirarSaldoSobregiro(double RetiroSobregiro){
-        if((this.Sobregiro-RetiroSobregiro)>0)
-        this.Sobregiro = this.Sobregiro - RetiroSobregiro;
-        //ELSE
+    
+    @Override
+    public void retirar(double Retiro){
+        double SaldoRetirar=this.getBalance()-Retiro;
+        if (Retiro>0 && Retiro<this.getBalance()){
+            this.retirar(Retiro);
+        }
+        else if(SaldoRetirar<0){
+            this.retirar(Retiro+SaldoRetirar);
+            Sobregiro=Sobregiro+SaldoRetirar;
+        } 
     }
 }

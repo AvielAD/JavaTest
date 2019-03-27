@@ -10,45 +10,41 @@ package javatest;
  * @author VSOne
  */
 public class Cuenta {
-    protected int NumeroCuenta;
-    protected int CodigoBanco;
-    protected int CodigoSucursal;
-    protected double Saldo;
-    protected String TipoCuenta = "Normal";
+    private double balance;
+    private int noCuenta;
+       
+    public Cuenta(int a){    
+		balance = 0.0;
+		noCuenta = a;
+    }
     
-    public Cuenta (int NumeroCuenta, int CodigoBanco, int CodigoSucursal){
-        this.NumeroCuenta = NumeroCuenta;
-        this.CodigoBanco = CodigoBanco;
-        this.CodigoSucursal = CodigoSucursal;
+    public void depositar(double suma){
+	if (suma>0)
+	    balance += suma;    
+	else
+	    System.err.println("No es posible depositar cantidad negativa.");    
     }
-    public int getNumeroCuenta(){
-        return NumeroCuenta;
+    
+    public void retirar(double suma){
+	if (suma > 0)
+	    balance -= suma;    
+	else
+	    System.err.println("No es posible retirar cantidad negativa.");    
     }
-    public int getCodigobanco(){
-        return CodigoBanco;
+    
+    public double getBalance(){
+		return balance;
     }
-    public int getCodigoSucursal(){
-        return CodigoSucursal;
+    
+    public int getNoCuenta(){
+		return noCuenta;
     }
-    public void setCodigoNumeroCuenta(int NumeroCuenta){
-        this.NumeroCuenta = NumeroCuenta;
+    
+    public String toString(){
+		return "No. Cuenta: " + noCuenta + " - " + "Balance = " + balance;    
     }
-    public void setCodigoBanco(int CodigoBanco){
-        this.CodigoBanco = CodigoBanco;
-    }
-    public void setCodigoSucursal(int CodigoSucursal){
-        this.CodigoSucursal = CodigoSucursal;
-    }
-    public double getSaldo(){
-        return this.Saldo;
-    }
-    public String getTipoCuenta(){
-        return TipoCuenta;
-    }
-    public void DepositarSaldo(double Deposito){
-        Saldo = Saldo + Deposito;
-    }
-    public void RetirarSaldo(double Retiro){
-        Saldo = Saldo - Retiro;
+    
+    public final void imprimir(){
+		System.out.println( toString() );    
     }
 }
